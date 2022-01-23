@@ -1,8 +1,8 @@
-package com.project.moviesbattleapi;
+package com.project.movies.battle;
 
-import com.project.moviesbattleapi.api.entity.Movie;
-import com.project.moviesbattleapi.api.repository.MovieRepository;
-import com.project.moviesbattleapi.client.IMDBApi;
+import com.project.movies.battle.api.repository.MovieRepository;
+import com.project.movies.battle.api.entity.Movie;
+import com.project.movies.battle.client.IMDBApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

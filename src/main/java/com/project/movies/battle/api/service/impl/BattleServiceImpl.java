@@ -1,8 +1,8 @@
-package com.project.moviesbattleapi.api.service.impl;
+package com.project.movies.battle.api.service.impl;
 
-import com.project.moviesbattleapi.api.entity.Movie;
-import com.project.moviesbattleapi.api.repository.MovieRepository;
-import com.project.moviesbattleapi.api.service.BattleService;
+import com.project.movies.battle.api.repository.MovieRepository;
+import com.project.movies.battle.api.service.BattleService;
+import com.project.movies.battle.api.entity.Movie;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 

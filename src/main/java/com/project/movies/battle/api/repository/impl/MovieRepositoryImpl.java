@@ -1,7 +1,7 @@
-package com.project.moviesbattleapi.api.repository.impl;
+package com.project.movies.battle.api.repository.impl;
 
-import com.project.moviesbattleapi.api.entity.Movie;
-import com.project.moviesbattleapi.api.repository.MovieRepositoryCustom;
+import com.project.movies.battle.api.entity.Movie;
+import com.project.movies.battle.api.repository.MovieRepositoryCustom;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

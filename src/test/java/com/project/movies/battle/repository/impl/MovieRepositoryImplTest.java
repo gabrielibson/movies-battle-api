@@ -1,6 +1,6 @@
-package com.project.moviesbattleapi.repository.impl;
+package com.project.movies.battle.repository.impl;
 
-import com.project.moviesbattleapi.api.repository.MovieRepository;
+import com.project.movies.battle.api.repository.MovieRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

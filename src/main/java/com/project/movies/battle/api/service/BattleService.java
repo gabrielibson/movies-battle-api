@@ -1,6 +1,6 @@
-package com.project.moviesbattleapi.api.service;
+package com.project.movies.battle.api.service;
 
-import com.project.moviesbattleapi.api.entity.Movie;
+import com.project.movies.battle.api.entity.Movie;
 import org.springframework.data.util.Pair;
 
 public interface BattleService {

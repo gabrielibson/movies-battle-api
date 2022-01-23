@@ -1,8 +1,8 @@
-package com.project.moviesbattleapi.service.impl;
+package com.project.movies.battle.service.impl;
 
-import com.project.moviesbattleapi.api.entity.Movie;
-import com.project.moviesbattleapi.api.repository.MovieRepository;
-import com.project.moviesbattleapi.api.service.impl.BattleServiceImpl;
+import com.project.movies.battle.api.repository.MovieRepository;
+import com.project.movies.battle.api.entity.Movie;
+import com.project.movies.battle.api.service.impl.BattleServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

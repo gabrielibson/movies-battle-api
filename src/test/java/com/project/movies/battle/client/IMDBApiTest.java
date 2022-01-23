@@ -1,4 +1,4 @@
-package com.project.moviesbattleapi.client;
+package com.project.movies.battle.client;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

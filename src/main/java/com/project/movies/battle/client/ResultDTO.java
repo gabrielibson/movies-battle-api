@@ -1,4 +1,4 @@
-package com.project.moviesbattleapi.client;
+package com.project.movies.battle.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.project.moviesbattleapi.api.config;
+package com.project.movies.battle.api.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

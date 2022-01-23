@@ -1,6 +1,6 @@
-package com.project.moviesbattleapi.api.repository;
+package com.project.movies.battle.api.repository;
 
-import com.project.moviesbattleapi.api.entity.Movie;
+import com.project.movies.battle.api.entity.Movie;
 
 import java.util.List;
 

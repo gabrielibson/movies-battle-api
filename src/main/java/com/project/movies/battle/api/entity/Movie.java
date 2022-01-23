@@ -1,4 +1,4 @@
-package com.project.moviesbattleapi.api.entity;
+package com.project.movies.battle.api.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
