@@ -10,6 +10,8 @@ public class MovieIMDB {
     private String id;
     private String title;
     private Integer year;
+    @JsonProperty("imDbRating")
+    private String imdbRating;
 
     @JsonProperty("year")
     public void setYear(String year) {
