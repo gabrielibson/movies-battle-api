@@ -14,7 +14,7 @@ public class MovieRepositoryImpl implements MovieRepositoryCustom {
 
     @Override
     public List<Movie> findTwoRandomMovies() {
-        String query = "SELECT new com.project.moviesbattleapi.api.entity.Movie(id, title, year, imdbRating)" +
+        String query = "SELECT new com.project.movies.battle.api.entity.Movie(id, title, year, imdbRating)" +
                 " FROM Movie m " +
                 "ORDER BY random()";
 
