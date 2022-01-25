@@ -1,8 +1,7 @@
-package com.project.movies.battle.service.impl;
+package com.project.movies.battle.api.service.impl;
 
 import com.project.movies.battle.api.repository.MovieRepository;
 import com.project.movies.battle.api.entity.Movie;
-import com.project.movies.battle.api.service.impl.BattleServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,9 +17,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class BattleServiceImplTest {
+public class MovieServiceImplTest {
     @InjectMocks
-    BattleServiceImpl battleService;
+    MovieServiceImpl battleService;
     @Mock
     MovieRepository movieRepository;
 

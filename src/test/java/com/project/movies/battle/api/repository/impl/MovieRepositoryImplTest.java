@@ -1,4 +1,4 @@
-package com.project.movies.battle.repository.impl;
+package com.project.movies.battle.api.repository.impl;
 
 import com.project.movies.battle.api.repository.MovieRepository;
 import org.junit.jupiter.api.Assertions;
