@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class MovieServiceImplTest {
     @InjectMocks
-    MovieServiceImpl battleService;
+    MovieServiceImpl movieService;
     @Mock
     MovieRepository movieRepository;
 
@@ -40,15 +40,15 @@ public class MovieServiceImplTest {
         when(movieRepository.findTwoRandomMovies()).thenReturn(moviesPair, moviesPair2, moviesPair3);
 
         // first call
-        battleService.getMoviesPair();
+        movieService.getMoviesPair();
 
-        var moviesAlreadyTaken = battleService.getMoviesAlreadyTaken();
+        var moviesAlreadyTaken = movieService.getMoviesAlreadyTaken();
 
         assertFalse(moviesAlreadyTaken.isEmpty());
         assertEquals(2, moviesAlreadyTaken.size());
 
         // second call
-        battleService.getMoviesPair();
+        movieService.getMoviesPair();
 
         // should call repository exactly 3 times
         verify(movieRepository, times(3)).findTwoRandomMovies();
