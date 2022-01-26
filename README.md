@@ -19,4 +19,4 @@ Spring Boot REST API that represents a game where you can try to guess the IMDB 
 ## Documentation
 
 * [Postman Collection Online](https://www.getpostman.com/collections/8a3e905b3fb81d24b212) - Endpoint collection online
-* [Postman Collection Offline](https://github.com/gabrielibson/movies-battle-api/blob/master/src/main/resources/docs/postman/Movies%20Battle%20API.postman_collection.json) - Endpoint collection offline
+* [Postman Collection Offline](https://github.com/gabrielibson/movies-battle-api/blob/master/src/main/resources/docs/postman/MoviesBattleAPI.postman_collection.json) - Endpoint collection offline
