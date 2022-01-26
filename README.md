@@ -2,7 +2,7 @@
 
 Spring Boot REST API that represents a game where you can try to guess the IMDB rating of two presented movies.
 
-## built with
+## Built with
 
 * 	[JDK11](https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html) - Java™ Platform, Standard Edition Development Kit Version 11
 * 	[Spring Boot](https://spring.io/projects/spring-boot) - Framework to ease the bootstrapping and development of new Spring
