@@ -8,21 +8,6 @@
 		{
 			"name": "Get Movies Pair",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "player1Pass",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "player1",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -44,21 +29,6 @@
 		{
 			"name": "Start Match",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "player1Pass",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "player1",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -81,21 +51,6 @@
 		{
 			"name": "End Match",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "player1Pass",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "player1",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -118,21 +73,6 @@
 		{
 			"name": "Guess Which Movie Has The Major IMDB Rate",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "player1Pass",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "player1",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -151,6 +91,41 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "player1",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "player1Pass",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
