@@ -1,4 +1,4 @@
-package com.project.movies.battle.api.repository.impl;
+package com.project.movies.battle.api.repository;
 
 import com.project.movies.battle.api.entity.Player;
 import org.springframework.data.jpa.repository.JpaRepository;

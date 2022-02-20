@@ -1,7 +1,7 @@
 package com.project.movies.battle.api.service.impl;
 
 import com.project.movies.battle.api.entity.Player;
-import com.project.movies.battle.api.repository.impl.PlayerRepository;
+import com.project.movies.battle.api.repository.PlayerRepository;
 import com.project.movies.battle.api.service.PlayerService;
 import org.springframework.stereotype.Service;
 
