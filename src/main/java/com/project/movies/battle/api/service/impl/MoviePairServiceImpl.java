@@ -1,5 +1,7 @@
 package com.project.movies.battle.api.service.impl;
 
+import com.project.movies.battle.api.entity.Match;
+import com.project.movies.battle.api.entity.Movie;
 import com.project.movies.battle.api.entity.MoviePair;
 import com.project.movies.battle.api.exception.OperationNotPermittedException;
 import com.project.movies.battle.api.repository.MoviePairRepository;
@@ -8,6 +10,8 @@ import com.project.movies.battle.api.service.MoviePairService;
 import com.project.movies.battle.api.service.MovieService;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MoviePairServiceImpl implements MoviePairService {
@@ -31,15 +35,7 @@ public class MoviePairServiceImpl implements MoviePairService {
             }
         }
         var moviesPair = movieService.getMoviesPair();
-        var moviePairTaken = MoviePair.builder()
-                .movieOne(moviesPair.get(0))
-                .movieTwo(moviesPair.get(1))
-                .active(true)
-                .build();
-        match.getMoviesAlreadyTaken().add(moviePairTaken);
-        var matchSaved = this.matchService.updateMatch(match);
-        moviePairTaken.setMatch(matchSaved);
-        this.moviePairRepository.save(moviePairTaken);
+        updateMatchWithMoviePairTaken(match, moviesPair);
         return Pair.of(moviesPair.get(0).getTitle(), moviesPair.get(1).getTitle());
     }
 
@@ -77,5 +73,17 @@ public class MoviePairServiceImpl implements MoviePairService {
         points = ++points;
         match.getPlayer().setPoints(points);
         matchService.updateMatch(match);
+    }
+
+    private void updateMatchWithMoviePairTaken(Match match, List<Movie> moviesPair) {
+        var moviePairTaken = MoviePair.builder()
+                .movieOne(moviesPair.get(0))
+                .movieTwo(moviesPair.get(1))
+                .active(true)
+                .build();
+        match.getMoviesAlreadyTaken().add(moviePairTaken);
+        var matchSaved = this.matchService.updateMatch(match);
+        moviePairTaken.setMatch(matchSaved);
+        this.moviePairRepository.save(moviePairTaken);
     }
 }
