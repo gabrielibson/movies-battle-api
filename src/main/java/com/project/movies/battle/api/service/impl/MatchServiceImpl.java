@@ -8,8 +8,6 @@ import com.project.movies.battle.api.service.MatchService;
 import com.project.movies.battle.api.service.PlayerService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -17,8 +15,6 @@ public class MatchServiceImpl implements MatchService {
 
     PlayerService playerService;
     MatchRepository matchRepository;
-
-    private final List<String> players = new ArrayList<>();
 
     public MatchServiceImpl(PlayerService playerService, MatchRepository matchRepository) {
         this.playerService = playerService;
@@ -28,12 +24,14 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public String startMatch() {
         String username = SecurityConfiguration.getUserLogged();
-        if(players.contains(username)) {
+        var player= playerService.findByUsername(username).orElseGet(() -> playerService.createPlayer(username));
+
+        if(player.isCurrentlyPlaying()) {
             throw new OperationNotPermittedException(String.format("%s has already started this match", username));
         }
-        players.add(username);
 
-        var player= playerService.findByUsername(username).orElseGet(() -> playerService.createPlayer(username));
+        player.setCurrentlyPlaying(true);
+
         var match = Match.builder()
                 .id(UUID.randomUUID().toString())
                 .player(player)
@@ -48,13 +46,16 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public String endMatch() {
         String username = SecurityConfiguration.getUserLogged();
-        if(!players.contains(username)) {
+        var player= playerService.findByUsername(username).orElseThrow();
+
+        if(!player.isCurrentlyPlaying()) {
             throw new OperationNotPermittedException("You should first start a match");
         }
         var match = this.getCurrentMatch();
+        player.setCurrentlyPlaying(false);
+        match.setPlayer(player);
         match.setActive(false);
         matchRepository.save(match);
-        players.remove(username);
 
         return "end of match";
     }

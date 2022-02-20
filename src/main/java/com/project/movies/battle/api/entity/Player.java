@@ -21,6 +21,8 @@ public class Player {
     @Column(unique = true)
     private String username;
     @Setter
+    private boolean currentlyPlaying;
+    @Setter
     private Integer points;
     private Integer totalPoints;
 }

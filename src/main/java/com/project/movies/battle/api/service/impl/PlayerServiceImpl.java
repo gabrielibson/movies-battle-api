@@ -22,6 +22,7 @@ public class PlayerServiceImpl implements PlayerService {
         var player = Player.builder()
                 .id(UUID.randomUUID().toString())
                 .username(username)
+                .currentlyPlaying(false)
                 .points(0)
                 .build();
 

@@ -2,7 +2,6 @@ package com.project.movies.battle.api.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,10 +23,11 @@ import java.util.List;
 public class Match {
     @Id
     private String id;
+    @Setter
     @ManyToOne
     private Player player;
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<MoviePair> moviesAlreadyTaken = new ArrayList<>();
     @Setter
-    private Boolean active;
+    private boolean active;
 }
