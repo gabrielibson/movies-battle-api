@@ -1,0 +1,166 @@
+openapi: 3.0.0
+info:
+  title: Swagger Movies Battle
+  description: |
+    Spring Boot REST API that represents a game where you can try to guess the IMDB rating of two presented movies.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: gabrielibson@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://virtserver.swaggerhub.com/gabrielibson/movies-battle-api/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://movies-battle.swagger.io/v2
+tags:
+- name: match
+  description: Access match operations
+- name: movies
+  description: Access movies operations
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /match/start:
+    get:
+      tags:
+      - match
+      summary: Start a new match
+      operationId: startMatch
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+              example: match has started
+        "401":
+          description: Authentication information is missing or invalid
+          headers:
+            WWW_Authenticate:
+              style: simple
+              explode: false
+              schema:
+                type: string
+      security:
+      - basic_auth: []
+  /match/end:
+    get:
+      tags:
+      - match
+      summary: End match
+      operationId: endMatch
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+              example: end of match
+        "401":
+          description: Authentication information is missing or invalid
+          headers:
+            WWW_Authenticate:
+              style: simple
+              explode: false
+              schema:
+                type: string
+      security:
+      - basic_auth: []
+  /movies:
+    get:
+      tags:
+      - movies
+      summary: Get movies pair
+      operationId: getMoviesPair
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoviesPair'
+        "401":
+          description: Authentication information is missing or invalid
+          headers:
+            WWW_Authenticate:
+              style: simple
+              explode: false
+              schema:
+                type: string
+      security:
+      - basic_auth: []
+  /movies/{option}:
+    get:
+      tags:
+      - movies
+      summary: Guess which movie has major IMDB rate
+      description: Returns a single pet
+      operationId: guessWhichMovieHasMajorImdbRate
+      parameters:
+      - name: option
+        in: path
+        description: option chosen by player
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+          enum:
+          - 1
+          - 2
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: right answer
+            application/xml:
+              schema:
+                type: string
+        "400":
+          description: Invalid option supplied
+        "401":
+          description: Authentication information is missing or invalid
+          headers:
+            WWW_Authenticate:
+              style: simple
+              explode: false
+              schema:
+                type: string
+      security:
+      - basic_auth: []
+components:
+  schemas:
+    MoviesPair:
+      type: object
+      properties:
+        first:
+          type: string
+          example: Gone Girl
+        second:
+          type: string
+          example: American Beauty
+  responses:
+    UnauthorizedError:
+      description: Authentication information is missing or invalid
+      headers:
+        WWW_Authenticate:
+          style: simple
+          explode: false
+          schema:
+            type: string
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic
