@@ -16,7 +16,7 @@ public class MatchControllerExceptionHandler extends ResponseEntityExceptionHand
     private static final Logger logger = LoggerFactory.getLogger(MatchControllerExceptionHandler.class);
 
     @ExceptionHandler(OperationNotPermittedException.class)
-    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorResponseDTO handleOperationNotPermittedException(OperationNotPermittedException ex) {
         return buildErrorResponse(ex);
@@ -24,7 +24,7 @@ public class MatchControllerExceptionHandler extends ResponseEntityExceptionHand
 
     private ErrorResponseDTO buildErrorResponse(Exception e) {
         ErrorResponseDTO errorResponseDTO = ErrorResponseDTO.builder()
-                .status(HttpStatus.FORBIDDEN.value())
+                .status(HttpStatus.BAD_REQUEST.value())
                 .message(e.getMessage())
                 .build();
         logger.error(errorResponseDTO.getMessage(), errorResponseDTO);
