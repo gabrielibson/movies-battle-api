@@ -1,6 +1,7 @@
 package com.project.movies.battle.api.controller;
 
 import com.project.movies.battle.api.dto.ErrorResponseDTO;
+import com.project.movies.battle.api.exception.MovieNotFoundException;
 import com.project.movies.battle.api.exception.OperationNotPermittedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,19 @@ public class MatchControllerExceptionHandler extends ResponseEntityExceptionHand
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorResponseDTO handleOperationNotPermittedException(OperationNotPermittedException ex) {
-        return buildErrorResponse(ex);
+        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST);
     }
 
-    private ErrorResponseDTO buildErrorResponse(Exception e) {
+    @ExceptionHandler(MovieNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponseDTO handleMovieNotFoundException(MovieNotFoundException ex) {
+        return buildErrorResponse(ex, HttpStatus.NOT_FOUND);
+    }
+
+    private ErrorResponseDTO buildErrorResponse(Exception e, HttpStatus status) {
         ErrorResponseDTO errorResponseDTO = ErrorResponseDTO.builder()
-                .status(HttpStatus.BAD_REQUEST.value())
+                .status(status.value())
                 .message(e.getMessage())
                 .build();
         logger.error(errorResponseDTO.getMessage(), errorResponseDTO);
