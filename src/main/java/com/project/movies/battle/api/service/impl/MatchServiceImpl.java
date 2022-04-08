@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+import static com.project.movies.battle.api.exception.ExceptionMessages.HAS_ALREADY_STARTED_THIS_MATCH;
+import static com.project.movies.battle.api.exception.ExceptionMessages.SHOULD_FIRST_START_A_MATCH;
+
 @Service
 public class MatchServiceImpl implements MatchService {
 
@@ -27,7 +30,7 @@ public class MatchServiceImpl implements MatchService {
         var player= playerService.findByUsername(username).orElseGet(() -> playerService.createPlayer(username));
 
         if(player.isCurrentlyPlaying()) {
-            throw new OperationNotPermittedException(String.format("%s has already started this match", username));
+            throw new OperationNotPermittedException(String.format(HAS_ALREADY_STARTED_THIS_MATCH, username));
         }
 
         player.setCurrentlyPlaying(true);
@@ -49,7 +52,7 @@ public class MatchServiceImpl implements MatchService {
         var player= playerService.findByUsername(username).orElseThrow();
 
         if(!player.isCurrentlyPlaying()) {
-            throw new OperationNotPermittedException("You should first start a match");
+            throw new OperationNotPermittedException(SHOULD_FIRST_START_A_MATCH);
         }
         var match = this.getCurrentMatch();
         player.setCurrentlyPlaying(false);
@@ -64,7 +67,7 @@ public class MatchServiceImpl implements MatchService {
     public Match getCurrentMatch() {
         var username = SecurityConfiguration.getUserLogged();
         return matchRepository.findByPlayerId(this.playerService.findByUsername(username)
-                .orElseThrow(() -> new OperationNotPermittedException("You should first start a match"))
+                .orElseThrow(() -> new OperationNotPermittedException(SHOULD_FIRST_START_A_MATCH))
                 .getId());
     }
 
