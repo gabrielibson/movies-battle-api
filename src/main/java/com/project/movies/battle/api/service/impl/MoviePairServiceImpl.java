@@ -11,6 +11,7 @@ import com.project.movies.battle.api.service.MoviePairService;
 import com.project.movies.battle.api.service.MovieService;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class MoviePairServiceImpl implements MoviePairService {
     }
 
     @Override
+    @Transactional
     public Pair<String, String> getMoviesPairTitles() {
         var match = matchService.getCurrentMatch();
         if(!match.getMoviesAlreadyTaken().isEmpty()) {
@@ -76,8 +78,7 @@ public class MoviePairServiceImpl implements MoviePairService {
     private void addPoints() {
         var match = matchService.getCurrentMatch();
         var points = match.getPlayer().getPoints();
-        ++points;
-        match.getPlayer().setPoints(points);
+        match.getPlayer().setPoints(++points);
         matchService.updateMatch(match);
     }
 

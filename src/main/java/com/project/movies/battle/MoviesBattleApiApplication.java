@@ -38,6 +38,6 @@ public class MoviesBattleApiApplication {
 						.build()
 		).collect(Collectors.toCollection(ArrayList::new));
 
-		movieRepository.saveAll(moviesList);
+		movieRepository.saveAllMovies(moviesList);
 	}
 }

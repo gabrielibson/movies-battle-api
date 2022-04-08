@@ -2,6 +2,7 @@ package com.project.movies.battle.api.repository.impl;
 
 import com.project.movies.battle.api.entity.Movie;
 import com.project.movies.battle.api.repository.MovieRepositoryCustom;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,5 +23,11 @@ public class MovieRepositoryImpl implements MovieRepositoryCustom {
         typedQuery.setMaxResults(2);
 
         return typedQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void saveAllMovies(List<Movie> movies) {
+        movies.forEach(movie -> entityManager.persist(movie));
     }
 }

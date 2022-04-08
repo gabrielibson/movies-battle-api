@@ -7,6 +7,7 @@ import com.project.movies.battle.api.repository.MatchRepository;
 import com.project.movies.battle.api.service.MatchService;
 import com.project.movies.battle.api.service.PlayerService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -64,6 +65,7 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Match getCurrentMatch() {
         var username = SecurityConfiguration.getUserLogged();
         return matchRepository.findByPlayerId(this.playerService.findByUsername(username)

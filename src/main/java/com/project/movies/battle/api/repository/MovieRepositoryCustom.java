@@ -7,4 +7,5 @@ import java.util.List;
 public interface MovieRepositoryCustom {
 
     List<Movie> findTwoRandomMovies();
+    void saveAllMovies(List<Movie> movies);
 }
