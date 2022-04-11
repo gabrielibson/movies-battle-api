@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface PlayerService {
     Player createPlayer(String username);
     Optional<Player> findByUsername(String username);
+    void addPoints(Player player);
 }

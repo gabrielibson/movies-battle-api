@@ -74,7 +74,12 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Match updateMatch(Match match) {
-        return this.matchRepository.save(match);
+    public void updateMatch(Match match) {
+        this.matchRepository.save(match);
+    }
+
+    @Override
+    public void addPoints(Match match) {
+        this.playerService.addPoints(match.getPlayer());
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static com.project.movies.battle.api.exception.ExceptionMessages.MOVIE_NOT_FOUND_FOR_THE_CURRENT_MATCH;
+import static com.project.movies.battle.api.exception.ExceptionMessages.CHOSEN_OPTION_NOT_PERMITTED;
 import static com.project.movies.battle.api.exception.ExceptionMessages.SHOULD_NOT_GO_AHEAD_WITHOUT_GUESSING;
 
 @Service
@@ -47,39 +48,29 @@ public class MoviePairServiceImpl implements MoviePairService {
     }
 
     @Override
+    @Transactional
     public String guessWhichMovieHasMajorImdbRate(Integer option) {
         var match = matchService.getCurrentMatch();
 
+        if(!List.of(1, 2).contains(option))
+                throw new OperationNotPermittedException(CHOSEN_OPTION_NOT_PERMITTED);
+
         var moviePair = moviePairRepository.findByMatchId(match.getId())
                 .orElseThrow(() -> new MovieNotFoundException(MOVIE_NOT_FOUND_FOR_THE_CURRENT_MATCH));
-        var movieRate1 = moviePair.getMovieOne().getImdbRating();
-        var movieRate2 = moviePair.getMovieTwo().getImdbRating();
+
+        Movie chosenMovie = option == 1 ? moviePair.getMovieOne() : moviePair.getMovieTwo();
+        Movie competitorMovie = option == 1 ? moviePair.getMovieTwo() : moviePair.getMovieOne();
 
         moviePair.setActive(false);
         moviePairRepository.save(moviePair);
 
-        if(option == 1) {
-            if(movieRate1 > movieRate2) {
-                this.addPoints();
-                return "right answer";
-            }else {
-                return "wrong answer";
-            }
+        //player gain points in draw cases
+        if(chosenMovie.getImdbRating() >= competitorMovie.getImdbRating()) {
+            this.matchService.addPoints(match);
+            return "right answer";
         }else {
-            if(movieRate2 > movieRate1) {
-                this.addPoints();
-                return "right answer";
-            }else {
-                return "wrong answer";
-            }
+            return "wrong answer";
         }
-    }
-
-    private void addPoints() {
-        var match = matchService.getCurrentMatch();
-        var points = match.getPlayer().getPoints();
-        match.getPlayer().setPoints(++points);
-        matchService.updateMatch(match);
     }
 
     private void updateMatchWithMoviePairTaken(Match match, List<Movie> moviesPair) {

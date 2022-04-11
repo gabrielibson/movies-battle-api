@@ -6,5 +6,6 @@ public interface MatchService {
     String startMatch();
     String endMatch();
     Match getCurrentMatch();
-    Match updateMatch(Match match);
+    void updateMatch(Match match);
+    void addPoints(Match match);
 }

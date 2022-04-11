@@ -33,4 +33,10 @@ public class PlayerServiceImpl implements PlayerService {
     public Optional<Player> findByUsername(String username) {
         return this.playerRepository.findByUsername(username);
     }
+
+    @Override
+    public void addPoints(Player player) {
+        player.setPoints(player.getPoints() + 1);
+        playerRepository.save(player);
+    }
 }
